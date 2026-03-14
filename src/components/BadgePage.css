@@ -1,0 +1,395 @@
+/* Page: full-screen beige, badge centered */
+.badge-page {
+  position: relative;
+  flex: 1;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+/* String extends first, then holds while badge falls */
+@keyframes string-extend {
+  0% {
+    transform: translateX(-50%) scaleY(0);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateX(-50%) scaleY(1);
+    opacity: 1;
+  }
+}
+
+/* Subtle string "give" when badge lands – gentle stretch then back */
+@keyframes string-give {
+  0%, 100% {
+    transform: translateX(-50%) scaleY(1);
+  }
+  50% {
+    transform: translateX(-50%) scaleY(1.08);
+  }
+}
+
+/* Badge: fall once, one soft bounce, then settle */
+@keyframes badge-drop {
+  0% {
+    transform: translateY(-100vh);
+  }
+  48% {
+    transform: translateY(0);
+  }
+  58% {
+    transform: translateY(10px);
+  }
+  72% {
+    transform: translateY(-5px);
+  }
+  85% {
+    transform: translateY(2px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* Lanyard string: from top of screen down to badge ring */
+.lanyard-string {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  transform-origin: top center;
+  width: 10px;
+  height: calc(60vh - 100px);
+  min-height: 200px;
+  background: linear-gradient(
+    180deg,
+    #2c2c2c 0%,
+    #1a1a1a 20%,
+    #2a2a2a 50%,
+    #1a1a1a 100%
+  );
+  border-radius: 5px;
+  box-shadow:
+    inset 1px 0 0 rgba(255, 255, 255, 0.15),
+    inset -1px 0 0 rgba(0, 0, 0, 0.3),
+    0 2px 8px rgba(0, 0, 0, 0.2);
+  z-index: 0;
+  pointer-events: none;
+  animation:
+    string-extend 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards,
+    string-give 0.45s ease-out 0.52s forwards;
+}
+
+/* Badge image wrapper – same drop animation as before */
+.badge-image-wrap {
+  position: relative;
+  z-index: 1;
+  max-width: 600px;
+  width: 100%;
+  animation: badge-drop 1.15s cubic-bezier(0.33, 1, 0.68, 1) forwards;
+}
+
+/* Grey ring at top – string attaches here */
+.badge-ring {
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 28px;
+  height: 16px;
+  border: 3px solid #6a6a6a;
+  border-bottom: none;
+  border-radius: 14px 14px 0 0;
+  background: linear-gradient(180deg, #9a9a9a 0%, #5a5a5a 100%);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+  z-index: 2;
+}
+
+.badge-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.2);
+}
+
+/* Clickable barcode area – bottom-left corner of badge */
+.badge-barcode-hit {
+  position: absolute;
+  bottom: 8%;
+  left: 6%;
+  width: 28%;
+  height: 18%;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  border-radius: 2px;
+}
+
+/* Clickable QR code area – top-right corner of badge */
+.badge-qr-hit {
+  position: absolute;
+  top: 8%;
+  right: 6%;
+  width: 22%;
+  height: 22%;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  border-radius: 2px;
+}
+
+/* Glossy highlight on plastic */
+.holder-gloss {
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  pointer-events: none;
+  background: linear-gradient(
+    165deg,
+    rgba(255, 255, 255, 0.5) 0%,
+    rgba(255, 255, 255, 0.15) 25%,
+    transparent 50%
+  );
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+/* Metallic ring at top */
+.holder-ring {
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 24px;
+  height: 14px;
+  border: 3px solid #8a8a8a;
+  border-bottom: none;
+  border-radius: 12px 12px 0 0;
+  background: linear-gradient(180deg, #b0b0b0 0%, #707070 100%);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  z-index: 2;
+}
+
+/* Horizontal slot for clip */
+.holder-slot {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 36px;
+  height: 4px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 2px;
+  z-index: 1;
+}
+
+/* Plastic buttons */
+.holder-button {
+  position: absolute;
+  top: 8px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.7) 0%,
+    rgba(200, 200, 200, 0.5) 100%
+  );
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.8),
+    0 1px 2px rgba(0, 0, 0, 0.15);
+  z-index: 1;
+}
+
+.holder-button--left {
+  left: 24px;
+}
+
+.holder-button--right {
+  right: 24px;
+}
+
+/* Inner paper badge */
+.badge-card {
+  position: relative;
+  width: 100%;
+  background: #f5f2eb;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 12px;
+  padding: 20px 18px 16px;
+  box-sizing: border-box;
+  /* Paper texture via subtle noise */
+  background-image:
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E"),
+    linear-gradient(180deg, #f8f6f0 0%, #f5f2eb 100%);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+}
+
+/* ----- Header ----- */
+.badge-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 4px;
+}
+
+.badge-headline {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  letter-spacing: 0.02em;
+}
+
+.headline-line {
+  display: block;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 700;
+  font-size: 1.85rem;
+  line-height: 1.05;
+  color: #1a1a1a;
+  letter-spacing: 0.04em;
+}
+
+.badge-drop {
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: #666;
+  margin-top: 2px;
+}
+
+.badge-tagline {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.tagline-main {
+  font-size: 0.58rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  color: #444;
+  text-transform: uppercase;
+}
+
+.tagline-brand {
+  font-size: 0.52rem;
+  font-style: italic;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: #333;
+  transform: rotate(-2deg);
+  opacity: 0.85;
+  flex-shrink: 0;
+}
+
+/* ----- Body: photo + fields ----- */
+.badge-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.badge-photo {
+  width: 100px;
+  height: 130px;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 12px;
+  background: #e8e4dc;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.badge-photo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: contrast(1.02) saturate(0.95);
+}
+
+.badge-fields {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.field-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: #1a1a1a;
+  font-family: ui-monospace, 'Cascadia Code', monospace;
+}
+
+.field-value {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  font-family: 'Caveat', 'Brush Script MT', cursive;
+  letter-spacing: 0.02em;
+}
+
+/* ----- Footer ----- */
+.badge-footer {
+  position: relative;
+  padding-top: 10px;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.badge-disclaimer {
+  font-size: 0.42rem;
+  line-height: 1.4;
+  color: #666;
+  margin: 0;
+  padding-right: 44px;
+  letter-spacing: 0.02em;
+}
+
+.badge-serial {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  font-size: 0.5rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: #555;
+  font-family: ui-monospace, monospace;
+}
+
+/* Responsive: scale badge, stay centered */
+@media (max-width: 420px) {
+  .badge-page {
+    padding: 1rem;
+  }
+
+  .plastic-holder {
+    width: 100%;
+    max-width: 300px;
+    padding: 12px 12px 16px;
+  }
+
+  .headline-line {
+    font-size: 1.6rem;
+  }
+
+  .badge-card {
+    padding: 16px 14px 14px;
+  }
+}

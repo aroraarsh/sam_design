@@ -1,0 +1,66 @@
+.resume-page {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  padding-top: 3.5rem;
+  background: #e8e6e3;
+  box-sizing: border-box;
+}
+
+.resume-back {
+  position: absolute;
+  top: 1.5rem;
+  left: 1.5rem;
+  color: #555;
+  text-decoration: none;
+  font-size: 1rem;
+  z-index: 1;
+}
+
+.resume-download {
+  position: absolute;
+  top: 1.35rem;
+  right: 1.5rem;
+  padding: 0.5rem 0.8rem;
+  border: 1px solid rgba(0, 0, 0, 0.22);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.65);
+  color: #333;
+  text-decoration: none;
+  font-size: 0.9rem;
+  line-height: 1;
+  z-index: 1;
+  transition: background-color 150ms ease;
+}
+
+.resume-download:hover {
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.resume-pdf-container {
+  width: 100%;
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0;
+}
+
+.resume-pdf-page {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 4px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  pointer-events: none;
+  user-select: none;
+}
+
+.resume-back:hover {
+  text-decoration: underline;
+}
