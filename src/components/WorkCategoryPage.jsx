@@ -23,6 +23,7 @@ function WorkCategoryPage({ title, activeTab, images }) {
     <div
       className={[
         'work-page',
+        `work-page--${activeTab}`,
         animateEntrance ? 'work-page--animate' : '',
         animateFlip ? `work-page--flip-${flipDirection}` : '',
       ]
