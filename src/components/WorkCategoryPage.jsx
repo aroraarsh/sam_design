@@ -1,8 +1,10 @@
+import { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import './WorkPage.css'
 
 function WorkCategoryPage({ title, activeTab, images }) {
   const location = useLocation()
+  const [expandedIndex, setExpandedIndex] = useState(null)
   const animateEntrance = Boolean(location.state?.fromId)
   const flipDirection = location.state?.flipDirection
   const animateFlip = flipDirection === 'left' || flipDirection === 'right'
@@ -17,6 +19,9 @@ function WorkCategoryPage({ title, activeTab, images }) {
   const getDirection = (targetIndex) => {
     if (targetIndex === currentIndex) return null
     return targetIndex < currentIndex ? 'left' : 'right'
+  }
+  const handleTileClick = (index) => {
+    setExpandedIndex((prev) => (prev === index ? null : index))
   }
 
   return (
@@ -84,13 +89,65 @@ function WorkCategoryPage({ title, activeTab, images }) {
         )}
       </div>
 
-      <div className="work-gallery">
-        {images.map((src, index) => (
-          <div key={index} className="work-tile" style={{ '--tile-index': index }}>
-            <img src={src} alt={`${title} ${index + 1}`} className="work-image" />
+      <div className={`work-gallery ${expandedIndex !== null ? 'work-gallery--has-expanded' : ''}`.trim()}>
+        {images.map((media, index) => (
+          <div
+            key={index}
+            className={[
+              'work-tile',
+              expandedIndex === index ? 'work-tile--expanded' : '',
+              expandedIndex !== null && expandedIndex !== index ? 'work-tile--deemphasized' : '',
+            ]
+              .join(' ')
+              .trim()}
+            style={{ '--tile-index': index }}
+          >
+            <button
+              type="button"
+              className="work-tile-trigger"
+              onClick={() => handleTileClick(index)}
+              aria-label={`Expand ${title} ${index + 1}`}
+            >
+              {media.type === 'video' ? (
+                <video
+                  src={media.src}
+                  className="work-image"
+                  controls={expandedIndex === index}
+                  muted
+                  loop
+                  autoPlay
+                  playsInline
+                  preload="metadata"
+                />
+              ) : (
+                <img src={media.src} alt={`${title} ${index + 1}`} className="work-image" />
+              )}
+            </button>
           </div>
         ))}
       </div>
+
+      <footer className="work-footer" aria-label="Social links">
+        <a
+          href="https://www.instagram.com/saammm.svg"
+          target="_blank"
+          rel="noreferrer"
+          className="work-footer-link"
+        >
+          Instagram
+        </a>
+        <span className="work-footer-separator" aria-hidden>
+          /
+        </span>
+        <a
+          href="https://www.linkedin.com/in/samriddhy-shanker/"
+          target="_blank"
+          rel="noreferrer"
+          className="work-footer-link"
+        >
+          LinkedIn
+        </a>
+      </footer>
     </div>
   )
 }
