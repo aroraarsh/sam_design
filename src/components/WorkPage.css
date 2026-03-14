@@ -48,13 +48,13 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  padding: 2rem;
+  padding: 1.5rem;
   background: #9a1010;
   box-sizing: border-box;
 }
 
 .work-copy {
-  margin-top: 18vh;
+  margin-top: 14vh;
   text-align: center;
 }
 
@@ -62,7 +62,7 @@
   margin: 0;
   font-family: Helvetica, Arial, sans-serif;
   font-weight: bold;
-  font-size: clamp(2.8rem, 7vw, 5rem);
+  font-size: clamp(2.1rem, 5.4vw, 3.7rem);
   letter-spacing: -0.05em;
   line-height: 0.9;
   color: #2b2b2b;
@@ -74,7 +74,7 @@
   display: flex;
   align-items: baseline;
   justify-content: center;
-  gap: clamp(1rem, 2.2vw, 2.2rem);
+  gap: clamp(0.7rem, 1.5vw, 1.5rem);
   font-family: Helvetica, Arial, sans-serif;
   letter-spacing: 0.06em;
   line-height: 1.2;
@@ -83,17 +83,17 @@
 }
 
 .work-services-wrap {
-  margin: 1.8rem 0 0;
+  margin: 1.2rem 0 0;
   display: flex;
   align-items: baseline;
   justify-content: center;
-  gap: clamp(0.8rem, 1.4vw, 1.4rem);
+  gap: clamp(0.55rem, 1vw, 1rem);
 }
 
 .work-arrow-nav {
   color: #2f2f2f;
   text-decoration: none;
-  font-size: clamp(0.9rem, 1.4vw, 1.2rem);
+  font-size: clamp(0.78rem, 1.1vw, 1rem);
   font-weight: 600;
   line-height: 1;
   opacity: 0.85;
@@ -111,7 +111,7 @@
 
 .work-service {
   font-weight: 500;
-  font-size: clamp(0.72rem, 1.1vw, 0.9rem);
+  font-size: clamp(0.64rem, 0.9vw, 0.8rem);
   opacity: 0.78;
   color: #2f2f2f;
   text-decoration: none;
@@ -120,7 +120,7 @@
 
 .work-service--active {
   font-weight: 700;
-  font-size: clamp(1.05rem, 1.8vw, 1.45rem);
+  font-size: clamp(0.9rem, 1.35vw, 1.15rem);
   opacity: 1;
 }
 
@@ -130,11 +130,11 @@
 
 .work-back {
   position: absolute;
-  top: 1.5rem;
-  left: 1.5rem;
+  top: 1.1rem;
+  left: 1.1rem;
   color: #3a3a3a;
   text-decoration: none;
-  font-size: 1rem;
+  font-size: 0.9rem;
 }
 
 .work-back:hover {
@@ -142,17 +142,17 @@
 }
 
 .work-gallery {
-  margin-top: 2.4rem;
-  width: min(1400px, 96vw);
+  margin-top: 1.7rem;
+  width: min(1120px, 90vw);
   display: grid;
   grid-template-columns: repeat(6, minmax(0, 1fr));
-  gap: 2.4rem;
+  gap: 1.35rem;
   perspective: 1200px;
 }
 
 .work-tile {
-  aspect-ratio: 4 / 5;
-  border-radius: 6px;
+  aspect-ratio: 5 / 6;
+  border-radius: 5px;
   overflow: hidden;
   background: rgba(0, 0, 0, 0.08);
   opacity: 1;
