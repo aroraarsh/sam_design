@@ -1,15 +1,25 @@
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './BadgePage.css'
 import badgeImage from '../assets/home page id.jpg'
 
 function BadgePage() {
   const navigate = useNavigate()
+  const [isExiting, setIsExiting] = useState(false)
 
-  const handleBarcodeClick = () => navigate('/work', { state: { fromId: true } })
-  const handleQRClick = () => navigate('/resume')
+  const startExitAndNavigate = (path, state) => {
+    if (isExiting) return
+    setIsExiting(true)
+    window.setTimeout(() => {
+      navigate(path, state ? { state } : undefined)
+    }, 640)
+  }
+
+  const handleBarcodeClick = () => startExitAndNavigate('/work', { fromId: true })
+  const handleQRClick = () => startExitAndNavigate('/resume')
 
   return (
-    <div className="badge-page">
+    <div className={`badge-page ${isExiting ? 'badge-page--exit' : ''}`.trim()}>
       <div className="lanyard-string" aria-hidden />
       <div className="badge-image-wrap">
         <div className="badge-ring" aria-hidden />
@@ -17,6 +27,7 @@ function BadgePage() {
           src={badgeImage}
           alt="ID badge"
           className="badge-image"
+          draggable={false}
         />
         <button
           type="button"

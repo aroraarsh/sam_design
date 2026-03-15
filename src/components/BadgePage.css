@@ -54,6 +54,29 @@
   }
 }
 
+/* Exit: badge and string move upward before navigation */
+@keyframes badge-rise {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-115vh);
+    opacity: 0.98;
+  }
+}
+
+@keyframes string-rise {
+  0% {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-50%) translateY(-115vh);
+    opacity: 0.9;
+  }
+}
+
 /* Lanyard string: from top of screen down to badge ring */
 .lanyard-string {
   position: absolute;
@@ -114,6 +137,9 @@
   height: auto;
   border-radius: 12px;
   box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.2);
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
 }
 
 /* Clickable barcode area – bottom-left corner of badge */
@@ -142,6 +168,19 @@
   background: transparent;
   cursor: pointer;
   border-radius: 2px;
+}
+
+.badge-page--exit .badge-image-wrap {
+  animation: badge-rise 0.64s cubic-bezier(0.5, 0, 0.75, 0) forwards;
+}
+
+.badge-page--exit .lanyard-string {
+  animation: string-rise 0.64s cubic-bezier(0.5, 0, 0.75, 0) forwards;
+}
+
+.badge-page--exit .badge-barcode-hit,
+.badge-page--exit .badge-qr-hit {
+  pointer-events: none;
 }
 
 /* Glossy highlight on plastic */

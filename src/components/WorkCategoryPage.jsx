@@ -1,10 +1,14 @@
 import { useState } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
+import miniIdImage from '../assets/home page id.jpg'
 import './WorkPage.css'
 
 function WorkCategoryPage({ title, activeTab, images }) {
+  const EXIT_TO_ID_DURATION_MS = 760
   const location = useLocation()
+  const navigate = useNavigate()
   const [expandedIndex, setExpandedIndex] = useState(null)
+  const [isExitingToId, setIsExitingToId] = useState(false)
   const animateEntrance = Boolean(location.state?.fromId)
   const flipDirection = location.state?.flipDirection
   const animateFlip = flipDirection === 'left' || flipDirection === 'right'
@@ -23,6 +27,14 @@ function WorkCategoryPage({ title, activeTab, images }) {
   const handleTileClick = (index) => {
     setExpandedIndex((prev) => (prev === index ? null : index))
   }
+  const handleBackToId = (event) => {
+    event.preventDefault()
+    if (isExitingToId) return
+    setIsExitingToId(true)
+    window.setTimeout(() => {
+      navigate('/')
+    }, EXIT_TO_ID_DURATION_MS)
+  }
 
   return (
     <div
@@ -30,12 +42,20 @@ function WorkCategoryPage({ title, activeTab, images }) {
         'work-page',
         `work-page--${activeTab}`,
         animateEntrance ? 'work-page--animate' : '',
+        isExitingToId ? 'work-page--exit' : '',
         animateFlip ? `work-page--flip-${flipDirection}` : '',
       ]
         .join(' ')
         .trim()}
     >
-      <Link to="/" className="work-back">← Back to ID</Link>
+      <div className="work-bg-fade" aria-hidden />
+      <Link to="/" className="work-back work-back-mini" onClick={handleBackToId} aria-label="Back to ID">
+        <span className="work-back-lanyard" aria-hidden />
+        <span className="work-back-card" aria-hidden>
+          <span className="work-back-ring" />
+          <img src={miniIdImage} alt="" className="work-back-image" />
+        </span>
+      </Link>
 
       <div className="work-copy">
         <p className="work-headline">WORK</p>
