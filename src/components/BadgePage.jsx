@@ -55,9 +55,13 @@ function BadgePage() {
           title="Go to resume"
         />
       </div>
-      <p className={`badge-hint ${showHint && !isExiting ? 'badge-hint--visible' : ''}`.trim()}>
-        Click the Work barcode to open portfolio. Click the Resume QR code to open resume.
-      </p>
+      <div className={`badge-hints ${showHint && !isExiting ? 'badge-hints--visible' : ''}`.trim()} aria-hidden>
+        <span className="badge-hint-item">
+          Click the barcode for portfolio
+          <br />
+          Click the QR code for resume
+        </span>
+      </div>
     </div>
   )
 }

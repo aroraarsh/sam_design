@@ -4,7 +4,7 @@ import { bookOfTypoImages } from '../data/workImages'
 function BookOfTypoPage() {
   return (
     <WorkCategoryPage
-      title="BOOK OF TYPOGRAPHY"
+      title="TYPOGRAPHY"
       activeTab="typo"
       images={bookOfTypoImages}
     />

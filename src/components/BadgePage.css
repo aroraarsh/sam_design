@@ -184,26 +184,50 @@
   pointer-events: none;
 }
 
-.badge-hint {
+.badge-hints {
   position: absolute;
   left: 50%;
-  bottom: 1.35rem;
+  top: calc(50% + 220px);
   transform: translateX(-50%);
-  margin: 0;
-  width: min(92vw, 680px);
-  text-align: center;
-  font-family: Helvetica, Arial, sans-serif;
-  font-size: clamp(0.72rem, 1.05vw, 0.9rem);
-  line-height: 1.4;
-  letter-spacing: 0.01em;
-  color: rgba(255, 245, 235, 0.92);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.15rem;
+  width: min(92vw, 760px);
+  padding: 0;
   opacity: 0;
   pointer-events: none;
   transition: opacity 300ms ease;
 }
 
-.badge-hint--visible {
+.badge-hints--visible {
   opacity: 1;
+}
+
+.badge-hint-item {
+  position: static;
+  margin: 0;
+  font-family: 'Caveat', 'Brush Script MT', cursive;
+  font-size: clamp(1rem, 1.55vw, 1.28rem);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.01em;
+  color: rgba(255, 245, 235, 0.94);
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+@media (max-width: 860px) {
+  .badge-hints {
+    top: calc(50% + 200px);
+    gap: 0.1rem;
+  }
+
+  .badge-hint-item {
+    font-size: clamp(0.9rem, 1.5vw, 1.08rem);
+    text-align: center;
+  }
 }
 
 /* Glossy highlight on plastic */

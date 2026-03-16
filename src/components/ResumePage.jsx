@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import * as pdfjsLib from 'pdfjs-dist'
-import resumePdf from '../assets/Shanker_Resume.pdf'
+import resumePdf from '../assets/Shanker_Resume w.pdf'
 import miniIdImage from '../assets/home page id.jpg'
 import './ResumePage.css'
 
