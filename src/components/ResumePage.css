@@ -13,12 +13,67 @@
 
 .resume-back {
   position: absolute;
-  top: 1.5rem;
-  left: 1.5rem;
-  color: #555;
+  top: 0;
+  left: 0.9rem;
+  color: #b53321;
   text-decoration: none;
-  font-size: 1rem;
-  z-index: 1;
+  font-size: 0.9rem;
+  z-index: 3;
+  pointer-events: auto;
+}
+
+.resume-back-mini {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 102px;
+  padding: 0 0.25rem 0.4rem;
+  text-decoration: none;
+}
+
+.resume-back-mini:hover {
+  text-decoration: none;
+}
+
+.resume-back-lanyard {
+  width: 6px;
+  height: 36px;
+  border-radius: 2px;
+  background: linear-gradient(180deg, #1e1e1e 0%, #121212 100%);
+  box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.2);
+}
+
+.resume-back-card {
+  position: relative;
+  width: 75px;
+  margin-top: 0;
+  border-radius: 7px;
+  background: transparent;
+  border: 0;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.22);
+  box-sizing: border-box;
+}
+
+.resume-back-ring {
+  position: absolute;
+  top: -9px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 18px;
+  height: 10px;
+  border: 3px solid #5e5e5e;
+  border-bottom: none;
+  border-radius: 7px 7px 0 0;
+  background: linear-gradient(180deg, #8c8c8c 0%, #6b6b6b 100%);
+}
+
+.resume-back-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  border-radius: 7px;
 }
 
 .resume-download {

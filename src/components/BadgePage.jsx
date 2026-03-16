@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './BadgePage.css'
 import badgeImage from '../assets/home page id.jpg'
@@ -6,6 +6,17 @@ import badgeImage from '../assets/home page id.jpg'
 function BadgePage() {
   const navigate = useNavigate()
   const [isExiting, setIsExiting] = useState(false)
+  const [showHint, setShowHint] = useState(false)
+
+  useEffect(() => {
+    const hintTimer = window.setTimeout(() => {
+      setShowHint(true)
+    }, 5000)
+
+    return () => {
+      window.clearTimeout(hintTimer)
+    }
+  }, [])
 
   const startExitAndNavigate = (path, state) => {
     if (isExiting) return
@@ -44,6 +55,9 @@ function BadgePage() {
           title="Go to resume"
         />
       </div>
+      <p className={`badge-hint ${showHint && !isExiting ? 'badge-hint--visible' : ''}`.trim()}>
+        Click the Work barcode to open portfolio. Click the Resume QR code to open resume.
+      </p>
     </div>
   )
 }
